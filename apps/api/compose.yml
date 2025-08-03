@@ -37,13 +37,6 @@ services:
         condition: service_healthy
     networks:
       - app-network
-    develop:
-      watch:
-        - action: sync
-          path: ./src
-          target: /usr/src/app/src
-        - action: rebuild
-          path: package.json
 
 volumes:
   db_data:
