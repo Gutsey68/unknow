@@ -1,0 +1,15 @@
+{
+  "name": "bun",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "bun run --cwd apps/api dev",
+    "build": "bun run --cwd apps/api build",
+    "seed": "bun run --cwd apps/api seed",
+    "dev:api": "cd apps/api && docker compose up --build"
+  },
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ]
+}

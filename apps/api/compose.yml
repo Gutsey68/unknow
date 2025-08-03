@@ -1,0 +1,53 @@
+services:
+  db:
+    image: postgres:17
+    environment:
+      POSTGRES_USER: bun
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: mydb
+      PGPORT: 5435
+    ports:
+      - "5435:5435"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U bun -d mydb -p 5435"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - app-network
+
+  api:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - DATABASE_URL=postgresql://bun:password@db:5435/mydb
+      - PORT=3000
+      - BETTER_AUTH_SECRET=mrzeo92vcXs3xYBCV97Pa15zQJWY7SYr
+      - BETTER_AUTH_URL=http://localhost:3000
+      - GOOGLE_CLIENT_ID=your-google-client-id
+      - GOOGLE_CLIENT_SECRET=your-google-client-secret
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - app-network
+    develop:
+      watch:
+        - action: sync
+          path: ./src
+          target: /usr/src/app/src
+        - action: rebuild
+          path: package.json
+
+volumes:
+  db_data:
+
+networks:
+  app-network:
+    driver: bridge
