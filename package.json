@@ -6,7 +6,8 @@
     "dev": "bun run --cwd apps/api dev",
     "build": "bun run --cwd apps/api build",
     "seed": "bun run --cwd apps/api seed",
-    "dev:api": "cd apps/api && docker compose up --build"
+    "dev:api": "cd apps/api && docker compose up --build",
+    "drizzle:studio": "cd apps/api && drizzle-kit studio"
   },
   "workspaces": [
     "packages/*",

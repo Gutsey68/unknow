@@ -1,0 +1,37 @@
+meta {
+  name: login
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{API_URL}}/auth/signin
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "email": "john.doe@example.com",
+    "password": "password1234",
+    "rememberMe": true
+  }
+}
+
+vars:post-response {
+  sessionToken: res.body.data.token
+}
+
+tests {
+  test("should return 200", function() {
+    expect(res.getStatus()).to.equal(200);
+  });
+  
+  test("should have success true", function() {
+    expect(res.getBody().success).to.be.true;
+  });
+  
+  test("should have session data", function() {
+    expect(res.getBody().data).to.be.an('object');
+  });
+}
