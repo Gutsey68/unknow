@@ -1,0 +1,25 @@
+meta {
+  name: create user log
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{API_URL}}/users/:userId/logs
+  body: json
+  auth: inherit
+}
+
+params:path {
+  userId: ImuO8Z93fRKKXmDexHpgIn6ms4iNBET2
+}
+
+body:json {
+  {
+    "date": "2025-08-05",
+    "weightKg": "75.50",
+    "steps": 8500,
+    "calories": 2200,
+    "sleepHours": "7.5"
+  }
+}

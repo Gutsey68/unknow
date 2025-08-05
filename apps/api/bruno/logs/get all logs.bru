@@ -1,11 +1,11 @@
 meta {
-  name: index
+  name: get all logs
   type: http
-  seq: 2
+  seq: 1
 }
 
 get {
-  url: {{API_URL}}
+  url: {{API_URL}}/logs
   body: none
   auth: inherit
 }

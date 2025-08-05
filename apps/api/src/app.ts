@@ -6,6 +6,8 @@ import env from "./env";
 import notFound from "./middleware/not-found";
 import onError from "./middleware/on-error";
 import { sessionMiddleware } from "./middleware/session";
+import globalLogsRoutes from "./routes/logs";
+import userLogsRoutes from "./routes/user-logs";
 import usersRoutes from "./routes/users";
 import { auth } from "./utils/auth";
 import * as STATUS_PHRASE from "./utils/http-status-phrase";
@@ -50,5 +52,7 @@ app.get("/health", (c) => {
 });
 
 app.route("/users", usersRoutes);
+app.route("/users", userLogsRoutes);
+app.route("/logs", globalLogsRoutes);
 
 export default app;

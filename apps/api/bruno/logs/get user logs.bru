@@ -1,0 +1,15 @@
+meta {
+  name: get user logs
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{API_URL}}/users/:userId/logs
+  body: none
+  auth: inherit
+}
+
+params:path {
+  userId: ImuO8Z93fRKKXmDexHpgIn6ms4iNBET2
+}

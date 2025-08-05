@@ -15,6 +15,13 @@
       "when": 1754248798306,
       "tag": "0001_normal_ulik",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1754390713724,
+      "tag": "0002_happy_princess_powerful",
+      "breakpoints": true
     }
   ]
 }

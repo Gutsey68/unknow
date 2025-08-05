@@ -1,0 +1,24 @@
+meta {
+  name: update user log
+  type: http
+  seq: 5
+}
+
+put {
+  url: {{API_URL}}/users/:userId/logs/2025-08-05
+  body: json
+  auth: inherit
+}
+
+params:path {
+  userId: ImuO8Z93fRKKXmDexHpgIn6ms4iNBET2
+}
+
+body:json {
+  {
+    "weightKg": "76.00",
+    "steps": 9000,
+    "calories": 2300,
+    "sleepHours": "8.0"
+  }
+}
