@@ -1,0 +1,7 @@
+# Bun configuration file
+[build]
+# Support for path mapping
+# Bun respects tsconfig.json path mapping automatically
+
+[dev]
+# Hot reload configuration for development

@@ -19,24 +19,49 @@ services:
       - app-network
 
   api:
-    build: .
+    build:
+      context: ./apps/api
+      dockerfile: Dockerfile
     ports:
-      - "3000:3000"
+      - "3333:3333"
     environment:
       - DATABASE_URL=postgresql://bun:password@db:5435/mydb
-      - PORT=3000
+      - PORT=3333
       - BETTER_AUTH_SECRET=mrzeo92vcXs3xYBCV97Pa15zQJWY7SYr
-      - BETTER_AUTH_URL=http://localhost:3000
+      - BETTER_AUTH_URL=http://localhost:3333
       - GOOGLE_CLIENT_ID=your-google-client-id
       - GOOGLE_CLIENT_SECRET=your-google-client-secret
     volumes:
-      - .:/usr/src/app
+      - ./apps/api:/usr/src/app
       - /usr/src/app/node_modules
     depends_on:
       db:
         condition: service_healthy
     networks:
       - app-network
+
+  web:
+    build:
+      context: ./apps/web
+      dockerfile: Dockerfile
+    ports:
+      - "5173:5173"
+    environment:
+      - VITE_API_URL=http://localhost:3333
+    volumes:
+      - ./apps/web:/usr/src/app
+      - /usr/src/app/node_modules
+    depends_on:
+      - api
+    networks:
+      - app-network
+    develop:
+      watch:
+        - action: sync
+          path: ./apps/web/src
+          target: /usr/src/app/src
+        - action: rebuild
+          path: ./apps/web/package.json
 
 volumes:
   db_data:

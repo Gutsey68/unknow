@@ -1,11 +1,11 @@
 meta {
-  name: get user log by date
+  name: get user by id
   type: http
-  seq: 3
+  seq: 2
 }
 
 get {
-  url: {{API_URL}}/users/:userId/logs/2025-08-05
+  url: {{API_URL}}/users/:userId
   body: none
   auth: inherit
 }

@@ -8,7 +8,7 @@ config({
 
 const EnvSchema = z.object({
   BUN_ENV: z.string(),
-  PORT: z.coerce.number().default(3000),
+  PORT: z.coerce.number().default(3333),
   DATABASE_URL: z.url(),
   BETTER_AUTH_SECRET: z
     .string()

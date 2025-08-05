@@ -5,6 +5,6 @@ COPY bun.lockb* ./
 RUN bun install
 COPY . .
 ENV NODE_ENV=development
-EXPOSE 3000
+EXPOSE 3333
 USER bun
 CMD ["bun", "run", "--watch", "src/index.ts"]

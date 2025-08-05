@@ -1,0 +1,25 @@
+meta {
+  name: update user
+  type: http
+  seq: 3
+}
+
+put {
+  url: {{API_URL}}/users/:userId
+  body: json
+  auth: inherit
+}
+
+params:path {
+  userId: ImuO8Z93fRKKXmDexHpgIn6ms4iNBET2
+}
+
+body:json {
+  {
+    "name": "Guts the Black Swordsman",
+    "email": "guts@example.com",
+    "image": "https://www.seyzeriat.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Ftoonthier.32c27bb6.png&w=640&q=75",
+    "heightCm": 180,
+    "birthDate": "1996-10-11"
+  }
+}
