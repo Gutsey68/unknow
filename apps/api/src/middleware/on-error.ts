@@ -12,8 +12,8 @@ const onError: ErrorHandler = (err, c) => {
       : INTERNAL_SERVER_ERROR;
   return c.json(
     {
+      success: false,
       message: err.message,
-
       stack: env.BUN_ENV === "production" ? undefined : err.stack,
     },
     statusCode,

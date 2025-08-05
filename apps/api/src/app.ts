@@ -1,10 +1,13 @@
 import { Hono } from "hono";
+import { cors } from "hono/cors";
 import { logger } from "hono/logger";
 import { prettyJSON } from "hono/pretty-json";
+import env from "./env";
 import notFound from "./middleware/not-found";
 import onError from "./middleware/on-error";
-import authRoutes from "./routes/auth";
+import { sessionMiddleware } from "./middleware/session";
 import usersRoutes from "./routes/users";
+import { auth } from "./utils/auth";
 import * as STATUS_PHRASE from "./utils/http-status-phrase";
 
 const app = new Hono({
@@ -13,8 +16,27 @@ const app = new Hono({
 
 app.use(prettyJSON());
 app.use(logger());
+
+app.use(
+  "/auth/*",
+  cors({
+    origin: env.FRONTEND_URL,
+    allowHeaders: ["Content-Type", "Authorization"],
+    allowMethods: ["POST", "GET", "OPTIONS"],
+    exposeHeaders: ["Content-Length", "Set-Cookie"],
+    maxAge: 600,
+    credentials: true,
+  }),
+);
+
+app.all("/auth/*", (c) => {
+  return auth.handler(c.req.raw);
+});
+
 app.notFound(notFound);
 app.onError(onError);
+
+app.use("*", sessionMiddleware);
 
 app.get("/", (c) => {
   return c.json({ success: true, message: "Hello Hono!" });
@@ -27,7 +49,6 @@ app.get("/health", (c) => {
   });
 });
 
-app.route("/auth", authRoutes);
 app.route("/users", usersRoutes);
 
 export default app;

@@ -9,14 +9,23 @@ export const auth = betterAuth({
     provider: "pg",
     schema,
   }),
+  baseURL: env.BETTER_AUTH_URL,
+  basePath: "/auth",
   trustedOrigins: [env.FRONTEND_URL],
   emailAndPassword: {
     enabled: true,
   },
-  socialProviders: {
-    google: {
-      clientId: env.GOOGLE_CLIENT_ID,
-      clientSecret: env.GOOGLE_CLIENT_SECRET,
+  // socialProviders: {
+  //   google: {
+  //     clientId: env.GOOGLE_CLIENT_ID,
+  //     clientSecret: env.GOOGLE_CLIENT_SECRET,
+  //   },
+  // },
+  advanced: {
+    useSecureCookies: env.BUN_ENV === "production",
+    defaultCookieAttributes: {
+      sameSite: "lax",
+      secure: env.BUN_ENV === "production",
     },
   },
 });

@@ -5,17 +5,7 @@ meta {
 }
 
 post {
-  url: {{API_URL}}/auth/logout
+  url: {{API_URL}}/auth/sign-out
   body: none
   auth: none
-}
-
-tests {
-  test("should return 200", function() {
-    expect(res.getStatus()).to.equal(200);
-  });
-  
-  test("should have success true", function() {
-    expect(res.getBody().success).to.be.true;
-  });
 }

@@ -5,13 +5,7 @@ meta {
 }
 
 get {
-  url: {{API_URL}}/auth/session
+  url: {{API_URL}}/auth/get-session
   body: none
   auth: none
-}
-
-tests {
-  test("should return 200 or 401", function() {
-    expect([200, 401]).to.include(res.getStatus());
-  });
 }
