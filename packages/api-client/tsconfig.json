@@ -1,0 +1,20 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
+    "rootDir": "src",
+    "paths": {
+      "@/api/*": ["../../apps/api/src/*"]
+    },
+    "typeRoots": ["./node_modules/@types"],
+    "declaration": true,
+    "declarationMap": true,
+    "allowImportingTsExtensions": false,
+    "noEmit": false,
+    "outDir": "dist"
+  },
+  "watchOptions": {
+    "excludeDirectories": ["**/node_modules", "**/packages/web"]
+  },
+  "include": ["src"]
+}

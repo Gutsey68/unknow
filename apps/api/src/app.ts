@@ -20,11 +20,11 @@ app.use(prettyJSON());
 app.use(logger());
 
 app.use(
-  "/auth/*",
+  "*",
   cors({
     origin: env.FRONTEND_URL,
     allowHeaders: ["Content-Type", "Authorization"],
-    allowMethods: ["POST", "GET", "OPTIONS"],
+    allowMethods: ["POST", "GET", "OPTIONS", "PATCH", "PUT", "DELETE"],
     exposeHeaders: ["Content-Length", "Set-Cookie"],
     maxAge: 600,
     credentials: true,
@@ -57,4 +57,4 @@ const routes = app
   .route("/logs", globalLogsRoutes);
 
 export default app;
-export type AppType = typeof routes;
+export type router = typeof routes;
