@@ -6,7 +6,7 @@ export const userSchema = z.object({
   email: z.email(),
   emailVerified: z.boolean(),
   image: z.url().nullable().optional(),
-  heightCm: z.number().int().positive(),
+  heightCm: z.number().int().positive().nullable().optional(),
   birthDate: z
     .string()
     .regex(/^\d{4}-\d{2}-\d{2}$/, "Date must be in YYYY-MM-DD format")

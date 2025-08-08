@@ -51,8 +51,10 @@ app.get("/health", (c) => {
   });
 });
 
-app.route("/users", usersRoutes);
-app.route("/users", userLogsRoutes);
-app.route("/logs", globalLogsRoutes);
+const routes = app
+  .route("/users", usersRoutes)
+  .route("/users", userLogsRoutes)
+  .route("/logs", globalLogsRoutes);
 
 export default app;
+export type AppType = typeof routes;

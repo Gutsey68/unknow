@@ -1,5 +1,5 @@
 {
-  "name": "api",
+  "name": "@healthlogs/api",
   "scripts": {
     "dev": "bun run --hot src/index.ts",
     "seed": "bun run src/db/seed.ts"
